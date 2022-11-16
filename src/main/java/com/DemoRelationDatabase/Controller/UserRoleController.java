@@ -40,6 +40,8 @@ public class UserRoleController {
 
             roleRepository.save(role);
 
+            RoleEntity role1 = roleRepository.findById(role.getId()).orElse(null);
+
             /**lam sao tu thang nay co the set lai duoc vao User
              * Đang có thắc mắc, khi thêm mới thằng Many nó sẽ add vào thằng One
              * Thì Table "Many" sẽ có FK_"One"
@@ -47,7 +49,7 @@ public class UserRoleController {
              * Thường là sẽ thêm mới thằng Many, rồi sau đó sẽ add vào thằng One
              * Bây giờ ngược lại muốn thêm mới thằng One rồi add vào Many
              * */
-            roleEntities.add(role);
+            roleEntities.add(role1);
         });
         userEntity.setRoleEntities(roleEntities);
 
